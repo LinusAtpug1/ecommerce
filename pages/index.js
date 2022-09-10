@@ -1,10 +1,11 @@
-
 import React from 'react'
+import { Product, FooterBanner, HeroBanner} from '../components';
+import { client} from '../lib/client';
 
 const Home = () => {
   return (
     <>
-     HeroBanner
+     <HeroBanner />
 
      <div className= "products-heading">
       
@@ -16,9 +17,14 @@ const Home = () => {
        {['Product 1', 'Product 2'].map((product) => product )}
      </div>
      
-     Footer
+     <FooterBanner />
     </>
   )
+}
+export const getServerSideProps = async () => {
+  const query = '*[_type== "product"]';
+  const products = await client.fetch(query);
+
 }
 
 export default Home
